@@ -1,4 +1,4 @@
-Microsoft (R) Macro Assembler Version 11.00.50727.1	    09/15/16 02:21:22
+Microsoft (R) Macro Assembler Version 11.00.61030.0	    09/15/16 17:58:21
 main.asm						     Page 1 - 1
 
 
@@ -13,27 +13,27 @@ main.asm						     Page 1 - 1
 
 				; external files to link with
 
-				; stack configuration
+				; stack configuration: set up 4096 stack frames
 				.STACK 4096
 
 				; named memory allocation and initialization
  00000000			.DATA
- 00000000 FFFFFF03		number	DWORD	-253
- 00000004 00000000		sum		DWORD	?
+ 00000000 FFFFFF03		number	DWORD	-253	; the number to be added to 74
+ 00000004 00000000		sum		DWORD	0		; will hold the sum of 74 and -253
 
 				; procedure code
  00000000			.CODE
  00000000			main	PROC
  00000000  A1 00000000 R		mov eax, number		; set eax to number (-253)
- 00000005  83 C0 4A			add eax, 74			; add 74 to eax, store result in eax
- 00000008  A3 00000004 R		mov sum, eax		; send results of addition to sum
+ 00000005  83 C0 4A			add eax, 74			; add 74 to what's already in eax (-253), store result in eax
+ 00000008  A3 00000004 R		mov sum, eax		; copy results of addition to sum
 
  0000000D  B8 00000000			mov eax, 0			; exit with return 0
  00000012  C3				ret
  00000013			main	ENDP
 
 				END
-Microsoft (R) Macro Assembler Version 11.00.50727.1	    09/15/16 02:21:22
+Microsoft (R) Macro Assembler Version 11.00.61030.0	    09/15/16 17:58:21
 main.asm						     Symbols 2 - 1
 
 
